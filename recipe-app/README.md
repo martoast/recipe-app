@@ -1,10 +1,10 @@
 # recipe-app
 
-> My stunning Nuxt.js project
+> My recipe app
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ npm install
 
