@@ -2,15 +2,15 @@
   <div>
     <h1>Recipes</h1>
     <RecipeCard
-      v-for="(recipe, index) in recipes"
-      :key="index"
+      v-for="recipe in recipes"
+      :key="recipe.id"
       :recipe="recipe"
-      :data-index="index"
     />
   </div>
 </template>
 <script>
 import RecipeCard from '@/components/RecipeCard.vue'
+import RecipeService from '@/services/RecipeService.js'
 export default {
   components: {
     RecipeCard
@@ -20,12 +20,14 @@ export default {
       title: 'Event Listing'
     }
   },
-  asyncData({ $axios }) {
-    // eslint-disable-next-line
-    return $axios.get('http://localhost:3002/recipes').then(response => {
-      return {
-        recipes: response.data
-      }
+  data() {
+    return {
+      recipes: []
+    }
+  },
+  created() {
+    RecipeService.getRecipes().then(response => {
+      this.recipes = response.data
     })
   }
 }
