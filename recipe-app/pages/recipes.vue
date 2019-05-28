@@ -15,9 +15,12 @@ export default {
   components: {
     RecipeCard
   },
-  computed: mapState({
-    recipes: state => state.recipes.recipes
-  }),
+
+  computed: {
+    ...mapState({
+      recipes: state => state.recipes.recipes
+    })
+  },
   head() {
     return {
       title: 'Event Listing'
