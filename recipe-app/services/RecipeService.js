@@ -11,5 +11,8 @@ const apiClient = axios.create({
 export default {
   getRecipes() {
     return apiClient.get('/recipes')
+  },
+  getRecipe(id) {
+    return apiClient.get('/recipes/' + id)
   }
 }
