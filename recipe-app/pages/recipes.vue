@@ -10,25 +10,28 @@
 </template>
 <script>
 import RecipeCard from '@/components/RecipeCard.vue'
-import RecipeService from '@/services/RecipeService.js'
+import { mapState } from 'vuex'
 export default {
   components: {
     RecipeCard
   },
+  computed: mapState({
+    recipes: state => state.recipes.recipes
+  }),
   head() {
     return {
       title: 'Event Listing'
     }
   },
-  data() {
-    return {
-      recipes: []
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('recipes/fetchRecipes')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time.'
+      })
     }
-  },
-  created() {
-    RecipeService.getRecipes().then(response => {
-      this.recipes = response.data
-    })
   }
 }
 </script>

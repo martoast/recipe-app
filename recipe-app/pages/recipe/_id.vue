@@ -1,9 +1,9 @@
 
 <template>
   <div>
-    <h1>Showing Recipe #{{recipeId}} </h1>
+    <h1>Showing Recipe #{{ recipeId }} </h1>
 
-    <pre>{{recipe}}</pre>
+    <pre>{{ recipe }}</pre>
   </div>
 </template>
 
