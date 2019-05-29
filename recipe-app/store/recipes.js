@@ -32,10 +32,13 @@ export const actions = {
   createRecipe({
     commit
   }, recipe) {
-    console.log('createRecipe: recipe :', recipe)
-    // return RecipeService.postRecipe(recipe).then(() => {
-    //   commit('ADD_RECIPE', recipe)
-    //   return recipe
-    // })
+    console.log('store: createRecipe: recipe :', recipe)
+    return RecipeService.postRecipe(recipe).then((result) => {
+      console.log('result :', result)
+    }).catch((err) => {
+      console.log('err', err)
+
+      alert('error with createRecipe')
+    })
   }
 }

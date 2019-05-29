@@ -39,8 +39,11 @@ export default {
       const recipe = { name: this.name }
       // console.log('recipe :', recipe)
       this.createRecipe(recipe)
-        .then(responce => {})
+        .then(responce => {
+          alert('store createRecipe succcess')
+        })
         .catch(err => {
+          alert('we got an error callling store createRecipe ')
           // console.log('There was a probelm creating Recipe')
           console.error(err)
         })

@@ -16,6 +16,7 @@ export default {
     return apiClient.get('/recipes/' + id)
   },
   postRecipe(recipe) {
-    return apiClient.post('/recipe', recipe)
+    console.log('service: postRecipe recipe :', recipe)
+    return apiClient.post('/recipes', recipe)
   }
 }
