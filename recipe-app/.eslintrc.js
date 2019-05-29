@@ -25,6 +25,7 @@ module.exports = {
     "vue/html-self-closing": 0,
     "vue/singleline-html-element-content-newline": 0,
     "vue/multiline-html-element-content-newline": 0,
-    "vue/require-default-prop": 0
+    "vue/require-default-prop": 0,
+    "no-console": 0,
   }
 }

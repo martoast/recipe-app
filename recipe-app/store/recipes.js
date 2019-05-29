@@ -1,6 +1,7 @@
 import RecipeService from '@/services/RecipeService'
 export const state = () => ({
-  recipes: []
+  recipes: [],
+  recipe: {}
 })
 export const mutations = {
   SET_RECIPES(state, recipes) {
@@ -31,8 +32,10 @@ export const actions = {
   createRecipe({
     commit
   }, recipe) {
-    return RecipeService.postRecipe(recipe).then(() => {
-      commit('ADD_RECIPE', recipe)
-    })
+    console.log('createRecipe: recipe :', recipe)
+    // return RecipeService.postRecipe(recipe).then(() => {
+    //   commit('ADD_RECIPE', recipe)
+    //   return recipe
+    // })
   }
 }
