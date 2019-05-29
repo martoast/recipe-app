@@ -14,5 +14,8 @@ export default {
   },
   getRecipe(id) {
     return apiClient.get('/recipes/' + id)
+  },
+  postRecipe(recipe) {
+    return apiClient.post('/recipe', recipe)
   }
 }

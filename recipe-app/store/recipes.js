@@ -8,6 +8,9 @@ export const mutations = {
   },
   SET_RECIPE(state, recipe) {
     state.recipe = recipe
+  },
+  ADD_RECIPE(state, recipe) {
+    state.recipe = recipe
   }
 }
 export const actions = {
@@ -23,6 +26,13 @@ export const actions = {
   }, id) {
     return RecipeService.getRecipe(id).then(function (response) {
       commit('SET_RECIPE', response.data)
+    })
+  },
+  createRecipe({
+    commit
+  }, recipe) {
+    return RecipeService.postRecipe(recipe).then(() => {
+      commit('ADD_RECIPE', recipe)
     })
   }
 }
