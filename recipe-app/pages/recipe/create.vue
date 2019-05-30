@@ -36,6 +36,7 @@
             d-flex
           >
             <v-select
+              v-model="region"
               :items="regions"
               label="Region"
             ></v-select>
@@ -63,7 +64,8 @@ export default {
       name: '',
       ingredients: [],
       available: ['Salt', 'Ass', 'more salt', 'Vuetify'],
-      regions: ['American', 'Italian', 'Mexican', 'Asian']
+      regions: ['American', 'Italian', 'Mexican', 'Asian'],
+      region: []
     }
   },
 
@@ -72,7 +74,11 @@ export default {
       createRecipe: 'recipes/createRecipe'
     }),
     submit() {
-      const recipe = { name: this.name, ingredients: this.ingredients }
+      const recipe = {
+        name: this.name,
+        ingredients: this.ingredients,
+        region: this.region
+      }
       // console.log('recipe :', recipe)
       this.createRecipe(recipe)
         .then(responce => {

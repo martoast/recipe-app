@@ -20,7 +20,6 @@ export default {
     return apiClient.post('/recipes', recipe)
   },
   getIngredients() {
-    console.log('service: getIngredients ingredients :', ingredients)
     return apiClient.get('/ingredients')
-  },
+  }
 }
