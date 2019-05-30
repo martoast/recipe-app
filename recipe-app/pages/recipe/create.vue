@@ -9,6 +9,11 @@
         label="Name"
         required
       ></v-text-field>
+      <v-text-field
+        v-model="img"
+        label="Image URL"
+        required
+      ></v-text-field>
 
       <v-container fluid>
         <v-layout wrap>
@@ -63,8 +68,9 @@ export default {
     return {
       name: '',
       ingredients: [],
-      available: ['Salt', 'Ass', 'more salt', 'Vuetify'],
-      regions: ['American', 'Italian', 'Mexican', 'Asian'],
+      img: '',
+      available: ['Salt', 'Ass', 'more salt', 'more Ass'],
+      regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
       region: []
     }
   },
@@ -77,7 +83,8 @@ export default {
       const recipe = {
         name: this.name,
         ingredients: this.ingredients,
-        region: this.region
+        region: this.region,
+        img: this.img
       }
       // console.log('recipe :', recipe)
       this.createRecipe(recipe)
