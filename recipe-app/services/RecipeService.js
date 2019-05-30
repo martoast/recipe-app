@@ -18,5 +18,9 @@ export default {
   postRecipe(recipe) {
     console.log('service: postRecipe recipe :', recipe)
     return apiClient.post('/recipes', recipe)
-  }
+  },
+  getIngredients() {
+    console.log('service: getIngredients ingredients :', ingredients)
+    return apiClient.get('/ingredients')
+  },
 }

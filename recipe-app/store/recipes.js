@@ -1,7 +1,8 @@
 import RecipeService from '@/services/RecipeService'
 export const state = () => ({
   recipes: [], // This is the list of recipes
-  recipe: {} // This is a single recipe mostly used when viewing a single recipe
+  recipe: {}, // This is a single recipe mostly used when viewing a single recipe
+  ingredients: {}
 })
 export const mutations = {
   SET_RECIPES(state, recipes) {
@@ -12,6 +13,9 @@ export const mutations = {
   },
   ADD_RECIPE(state, recipe) {
     state.recipe = recipe
+  },
+  SET_INGREDIENTS(state, ingredients) {
+    state.ingredients = ingredients
   }
 }
 export const actions = {
@@ -27,6 +31,13 @@ export const actions = {
   }, id) {
     return RecipeService.getRecipe(id).then(function (response) {
       commit('SET_RECIPE', response.data)
+    })
+  },
+  fetchIngredients({
+    commit
+  }) {
+    return RecipeService.getIngredients().then(response => {
+      commit('SET_INGREDIENTS', response.data)
     })
   },
   createRecipe({
