@@ -1,9 +1,18 @@
 
 <template>
-  <div>
+  <div class="c">
     <h1>Showing Recipe #{{ recipeId }} </h1>
+    <img :src="recipe.img">
+    <h2>{{ recipe.name }}</h2>
+    <h2>Region: {{ recipe.region }}</h2>
+    <h2>Necesary Ingredients:</h2>
+    <ul>
+      <li
+        v-for="(ingredient,index) in recipe.ingredients"
+        :key="recipe.id - index"
+      >{{ ingredient }}</li>
+    </ul>
 
-    <pre>{{ recipe }}</pre>
   </div>
 </template>
 
@@ -34,3 +43,8 @@ export default {
   }
 }
 </script>
+<style>
+div.c {
+  text-align: center;
+}
+</style>
