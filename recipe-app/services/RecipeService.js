@@ -21,5 +21,8 @@ export default {
   },
   getIngredients() {
     return apiClient.get('/ingredients')
+  },
+  editRecipe(recipe) {
+    return apiClient.put('/recipes', recipe)
   }
 }

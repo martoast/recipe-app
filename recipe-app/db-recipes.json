@@ -6,8 +6,7 @@
     "salt",
     "paprika"
   ],
-  "recipes": [
-    {
+  "recipes": [{
       "id": "2",
       "name": "Baked Shrimp Scampi",
       "img": "https://i.ytimg.com/vi/3f0bddKxuFs/maxresdefault.jpg",
@@ -39,6 +38,7 @@
     {
       "id": "4",
       "name": "Strawberries Romanov (La Madeleine copycat)",
+      "img": "http://www.themeaningofpie.com/wp-content/uploads/2011/05/strawberries-romanoff-1.jpg",
       "source": "http://cookeatshare.com/recipes/la-madeleine-s-strawberries-romanov-318025",
       "preptime": 0,
       "waittime": 0,
@@ -71,6 +71,7 @@
       "id": "5",
       "name": "Tomato Basil Soup (La Madeleine copycat)",
       "source": "http://cookeatshare.com/recipes/la-madeleine-s-tomato-basil-soup-318026",
+      "img": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2003/9/29/0/ig1a05_tomato_soup.jpg.rend.hgtvcom.826.620.suffix/1485889312843.jpeg",
       "preptime": 0,
       "waittime": 0,
       "cooktime": 0,
@@ -103,6 +104,7 @@
     {
       "id": "7",
       "name": "John Thorne's Pecan Pie",
+      "img": "https://search.chow.com/thumbnail/1200/0/www.chowstatic.com/assets/2014/09/29151_pecan_pie_3000.jpg",
       "source": "http://chowhound.chow.com/topics/281175#1495442",
       "preptime": 0,
       "waittime": 0,
@@ -132,62 +134,6 @@
         "pie",
         "untried"
       ]
-    },
-    {
-      "name": "My new recipe",
-      "id": "GYyRgVD"
-    },
-    {
-      "name": "new one",
-      "id": "6xuYQ6t"
-    },
-    {
-      "name": "xxx",
-      "id": "bCcbKdx"
-    },
-    {
-      "name": "xxxdsfd",
-      "id": "PbEgVEc"
-    },
-    {
-      "name": "xxxxxxx",
-      "id": "eDGp5_f"
-    },
-    {
-      "name": "test 1",
-      "ingredients": [
-        "Ass",
-        "more salt"
-      ],
-      "id": "bkhu3pN"
-    },
-    {
-      "name": "test 2 ",
-      "ingredients": [
-        "Ass",
-        "Salt"
-      ],
-      "id": "rdJtusR"
-    },
-    {
-      "name": "test 3 ",
-      "ingredients": [
-        "Ass"
-      ],
-      "region": "Mexican",
-      "id": "oCUO6US"
-    },
-    {
-      "name": "New Recepi",
-      "ingredients": [
-        "Salt",
-        "Ass",
-        "more salt",
-        "more Ass"
-      ],
-      "region": "Asian",
-      "img": "http://uneke.com/images/recipes/scampi_03.JPG",
-      "id": "IKQmSCG"
     },
     {
       "name": "Shrimp Scampi",

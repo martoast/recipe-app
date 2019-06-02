@@ -19,10 +19,12 @@
     >{{ ingredient }}</v-chip>
 
     <v-card-actions>
-      <v-btn
-        flat
-        color="orange"
-      >Share</v-btn>
+      <nuxt-link :to="'/recipe/edit/' + recipe.id">
+        <v-btn
+          flat
+          color="orange"
+        >Edit</v-btn>
+      </nuxt-link>
       <nuxt-link :to="'/recipe/' + recipe.id">
         <v-btn
           flat

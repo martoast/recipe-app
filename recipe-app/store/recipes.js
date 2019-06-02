@@ -52,4 +52,11 @@ export const actions = {
       alert('error with createRecipe')
     })
   }
+  // changeRecipe({
+  //   commit
+  // }, recipe) {
+  //   return RecipeService.editRecipe(recipe.id).then(response => {
+  //     commit('SET_RECIPES', response.data)
+  //   })
+  // }
 }
