@@ -2,6 +2,7 @@
   <div>
     <h1> Create a Recipe!</h1>
     <v-form ref="form">
+      <pre>{{availableIngredients}}</pre>
 
       {{ name }}
       <v-text-field
@@ -63,13 +64,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       name: '',
       ingredients: [],
       img: '',
-      available: ['Salt', 'Ass', 'more salt', 'more Ass'],
+      availableIngredients: [],
       regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
       region: []
     }
@@ -97,6 +99,27 @@ export default {
           console.error(err)
         })
     }
+  },
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('recipes/fetchIngredients')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
+  },
+  mounted() {
+    this.availableIngredients = this.ingredientsStateValue
+  },
+  computed: {
+    ...mapState({
+      ingredientsStateValue: state => state.recipes.ingredients
+    })
   }
 }
 </script>

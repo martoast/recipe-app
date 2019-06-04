@@ -2,18 +2,14 @@
   <div>
     <h1> Edit the Recipe {{ recipeId }}!</h1>
     <v-form ref="form">
-
-      <pre>{{availableIngredients}}</pre>
-
-      {{ name }}
       <v-text-field
         v-model="name"
-        label="name"
+        label=name
         required
       ></v-text-field>
       <v-text-field
         v-model="img"
-        label="recipe.img"
+        label=img
         required
       ></v-text-field>
 
@@ -23,7 +19,7 @@
             <v-combobox
               v-model="ingredients"
               :items="availableIngredients"
-              label="Select all necesarry ingredients"
+              label=ingredients
               multiple
             ></v-combobox>
           </v-flex>
@@ -45,7 +41,7 @@
             <v-select
               v-model="region"
               :items="availableRegions"
-              label="recipe.region"
+              label=region
             ></v-select>
           </v-flex>
         </v-layout>
@@ -57,6 +53,12 @@
       >
         Submit
       </v-btn>
+      <!-- <v-btn
+        color="success"
+        @click="erase"
+      >
+        Delete
+      </v-btn> -->
 
     </v-form>
   </div>
@@ -81,6 +83,21 @@ export default {
     ...mapActions({
       changeRecipe: 'recipes/changeRecipe'
     }),
+    // erase() {
+    //   const recipe = {
+    //     id: '',
+    //     name: '',
+    //     ingredients: [],
+    //     region: '',
+    //     img: ''
+    //   }
+
+    //   console.log('delete recipe :', recipe)
+
+    //   this.changeRecipe(recipe).then(responce => {
+    //     alert('changeRecipe succcess')
+    //   })
+    // },
     submit() {
       const recipe = {
         id: this.recipeId,
@@ -97,7 +114,7 @@ export default {
       })
     }
   },
-  async fetch({ store, error }) {
+  async fetch({ store, error, params }) {
     try {
       await store.dispatch('recipes/fetchIngredients')
     } catch (e) {
@@ -109,10 +126,25 @@ export default {
         console.error(err)
       })
     }
+
+    try {
+      await store.dispatch('recipes/fetchRecipe', params.id)
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
   },
+
   mounted() {
     this.name = this.recipeStateValue.name
+    this.region = this.recipeStateValue.region
     this.img = this.recipeStateValue.img
+    this.ingredients = this.recipeStateValue.ingredients
     this.availableIngredients = this.ingredientsStateValue
   },
   computed: {
