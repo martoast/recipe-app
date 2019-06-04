@@ -53,12 +53,12 @@
       >
         Submit
       </v-btn>
-      <!-- <v-btn
+      <v-btn
         color="success"
         @click="erase"
       >
         Delete
-      </v-btn> -->
+      </v-btn>
 
     </v-form>
   </div>
@@ -81,23 +81,19 @@ export default {
   },
   methods: {
     ...mapActions({
-      changeRecipe: 'recipes/changeRecipe'
+      changeRecipe: 'recipes/changeRecipe',
+      deleteRecipe: 'recipes/deleteRecipe'
     }),
-    // erase() {
-    //   const recipe = {
-    //     id: '',
-    //     name: '',
-    //     ingredients: [],
-    //     region: '',
-    //     img: ''
-    //   }
+    erase() {
+      const recipe = {
+        id: this.recipeId
+      }
 
-    //   console.log('delete recipe :', recipe)
+      console.log('delete recipe :', recipe)
 
-    //   this.changeRecipe(recipe).then(responce => {
-    //     alert('changeRecipe succcess')
-    //   })
-    // },
+      this.deleteRecipe(recipe)
+      alert('deleteRecipe succcess')
+    },
     submit() {
       const recipe = {
         id: this.recipeId,
@@ -155,9 +151,6 @@ export default {
       recipeStateValue: state => state.recipes.recipe,
       ingredientsStateValue: state => state.recipes.ingredients
     })
-    // ...mapState({
-    //   ingredients: state => state.ingredients
-    // })
   }
 }
 </script>

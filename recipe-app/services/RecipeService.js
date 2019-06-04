@@ -25,5 +25,9 @@ export default {
   changeRecipe(recipe) {
     console.log('service: changeRecipe recipe :', recipe)
     return apiClient.put(`/recipes/${recipe.id}`, recipe)
+  },
+  deleteRecipe(recipe) {
+    console.log('service: deleteRecipe recipe :', recipe)
+    return apiClient.delete(`/recipes/${recipe.id}`, recipe)
   }
 }

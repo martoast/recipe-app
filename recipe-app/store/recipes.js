@@ -58,5 +58,13 @@ export const actions = {
     return RecipeService.changeRecipe(recipe).then(response => {
       commit('SET_RECIPES', response.data)
     })
+  },
+  deleteRecipe({
+    commit
+  }, recipe) {
+    console.log('store deleteRecipe :', recipe)
+    return RecipeService.deleteRecipe(recipe).then(response => {
+      commit('SET_RECIPES', response.data)
+    })
   }
 }
