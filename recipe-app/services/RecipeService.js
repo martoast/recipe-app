@@ -17,12 +17,13 @@ export default {
   },
   postRecipe(recipe) {
     console.log('service: postRecipe recipe :', recipe)
-    return apiClient.post('/recipes', recipe)
+    return apiClient.post('/recipes/', recipe)
   },
   getIngredients() {
     return apiClient.get('/ingredients')
   },
-  editRecipe(recipe) {
-    return apiClient.put('/recipes', recipe)
+  changeRecipe(recipe) {
+    console.log('service: changeRecipe recipe :', recipe)
+    return apiClient.put(`/recipes/${recipe.id}`, recipe)
   }
 }

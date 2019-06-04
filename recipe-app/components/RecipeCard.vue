@@ -2,6 +2,7 @@
 
   <v-card>
     <v-img
+      v-if="recipe.img"
       :src="recipe.img"
       aspect-ratio="2.75"
     ></v-img>
