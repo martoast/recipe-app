@@ -2,9 +2,6 @@
   <div>
     <h1> Create a Recipe!</h1>
     <v-form ref="form">
-      <pre>{{availableIngredients}}</pre>
-
-      {{ name }}
       <v-text-field
         v-model="name"
         label="Name"
@@ -21,7 +18,7 @@
           <v-flex xs12>
             <v-combobox
               v-model="ingredients"
-              :items="available"
+              :items="availableIngredients"
               label="Select all necesarry ingredients"
               multiple
             ></v-combobox>
@@ -76,7 +73,27 @@ export default {
       region: []
     }
   },
-
+  computed: {
+    ...mapState({
+      ingredientsStateValue: state => state.recipes.ingredients
+    })
+  },
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('recipes/fetchIngredients')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
+  },
+  mounted() {
+    this.availableIngredients = this.ingredientsStateValue
+  },
   methods: {
     ...mapActions({
       createRecipe: 'recipes/createRecipe'
@@ -99,27 +116,6 @@ export default {
           console.error(err)
         })
     }
-  },
-  async fetch({ store, error }) {
-    try {
-      await store.dispatch('recipes/fetchIngredients')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch recipe at this time'
-      }).catch(err => {
-        alert('we got an error fetching ingredients. ')
-        console.error(err)
-      })
-    }
-  },
-  mounted() {
-    this.availableIngredients = this.ingredientsStateValue
-  },
-  computed: {
-    ...mapState({
-      ingredientsStateValue: state => state.recipes.ingredients
-    })
   }
 }
 </script>

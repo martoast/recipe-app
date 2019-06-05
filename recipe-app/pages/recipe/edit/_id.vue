@@ -4,12 +4,12 @@
     <v-form ref="form">
       <v-text-field
         v-model="name"
-        label=name
+        label="name"
         required
       ></v-text-field>
       <v-text-field
         v-model="img"
-        label=img
+        label="img"
         required
       ></v-text-field>
 
@@ -19,7 +19,7 @@
             <v-combobox
               v-model="ingredients"
               :items="availableIngredients"
-              label=ingredients
+              label="ingredients"
               multiple
             ></v-combobox>
           </v-flex>
@@ -41,7 +41,7 @@
             <v-select
               v-model="region"
               :items="availableRegions"
-              label=region
+              label="region"
             ></v-select>
           </v-flex>
         </v-layout>
@@ -79,6 +79,47 @@ export default {
       region: []
     }
   },
+  computed: {
+    recipeId() {
+      return this.$route.params.id
+    },
+    ...mapState({
+      recipeStateValue: state => state.recipes.recipe,
+      ingredientsStateValue: state => state.recipes.ingredients
+    })
+  },
+  async fetch({ store, error, params }) {
+    try {
+      await store.dispatch('recipes/fetchIngredients')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
+    try {
+      await store.dispatch('recipes/fetchRecipe', params.id)
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
+  },
+
+  mounted() {
+    this.name = this.recipeStateValue.name
+    this.region = this.recipeStateValue.region
+    this.img = this.recipeStateValue.img
+    this.ingredients = this.recipeStateValue.ingredients
+    this.availableIngredients = this.ingredientsStateValue
+  },
   methods: {
     ...mapActions({
       changeRecipe: 'recipes/changeRecipe',
@@ -102,55 +143,11 @@ export default {
         region: this.region,
         img: this.img
       }
-
       console.log('submit recipe :', recipe)
-
       this.changeRecipe(recipe).then(responce => {
         alert('changeRecipe succcess')
       })
     }
-  },
-  async fetch({ store, error, params }) {
-    try {
-      await store.dispatch('recipes/fetchIngredients')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch recipe at this time'
-      }).catch(err => {
-        alert('we got an error fetching ingredients. ')
-        console.error(err)
-      })
-    }
-
-    try {
-      await store.dispatch('recipes/fetchRecipe', params.id)
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch recipe at this time'
-      }).catch(err => {
-        alert('we got an error fetching ingredients. ')
-        console.error(err)
-      })
-    }
-  },
-
-  mounted() {
-    this.name = this.recipeStateValue.name
-    this.region = this.recipeStateValue.region
-    this.img = this.recipeStateValue.img
-    this.ingredients = this.recipeStateValue.ingredients
-    this.availableIngredients = this.ingredientsStateValue
-  },
-  computed: {
-    recipeId() {
-      return this.$route.params.id
-    },
-    ...mapState({
-      recipeStateValue: state => state.recipes.recipe,
-      ingredientsStateValue: state => state.recipes.ingredients
-    })
   }
 }
 </script>

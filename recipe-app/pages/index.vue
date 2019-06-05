@@ -2,10 +2,10 @@
   <div>
     <h1>Recipes</h1>
     <RecipeCard
-      class="mb-5"
       v-for="recipe in recipes"
       :key="recipe.id"
       :recipe="recipe"
+      class="mb-5"
     />
   </div>
 </template>

@@ -35,7 +35,6 @@
     </v-toolbar>
     <v-content>
       <v-container>
-
         <nuxt />
 
       </v-container>

@@ -22,7 +22,14 @@ export default {
   data() {
     return {}
   },
-
+  computed: {
+    recipeId() {
+      return this.$route.params.id
+    },
+    ...mapState({
+      recipe: state => state.recipes.recipe
+    })
+  },
   async fetch({ store, params, error }) {
     try {
       await store.dispatch('recipes/fetchRecipe', params.id)
@@ -32,14 +39,6 @@ export default {
         message: 'Unable to fetch recipes at this time'
       })
     }
-  },
-  computed: {
-    recipeId() {
-      return this.$route.params.id
-    },
-    ...mapState({
-      recipe: state => state.recipes.recipe
-    })
   }
 }
 </script>
