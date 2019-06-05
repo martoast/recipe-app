@@ -46,19 +46,20 @@
           </v-flex>
         </v-layout>
       </v-container>
-
-      <v-btn
-        color="success"
-        @click="submit"
-      >
-        Submit
-      </v-btn>
-      <v-btn
-        color="success"
-        @click="erase"
-      >
-        Delete
-      </v-btn>
+      <nuxt-link to="/">
+        <v-btn
+          color="success"
+          @click="submit"
+        >
+          Submit
+        </v-btn>
+        <v-btn
+          color="success"
+          @click="erase"
+        >
+          Delete
+        </v-btn>
+      </nuxt-link>
 
     </v-form>
   </div>
