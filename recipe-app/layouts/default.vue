@@ -98,19 +98,19 @@ export default {
       items: [
         {
           icon: 'apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/'
         },
         {
           icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Create',
+          to: '/recipe/create'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Martos Recipe App'
     }
   }
 }
