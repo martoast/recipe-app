@@ -1,14 +1,36 @@
 {
-  "ingredients": [
-    "rice",
-    "water",
-    "oil",
-    "salt",
-    "paprika",
-    "chicken"
-  ],
-  "recipes": [
+  "ingredients": [{
+      "name": "water",
+      "avatar": "",
+      "group": "meat"
+    },
     {
+      "name": "rice",
+      "avatar": "",
+      "group": "grains"
+    },
+    {
+      "name": "oil",
+      "avatar": "",
+      "group": "meat"
+    },
+    {
+      "name": "salt",
+      "avatar": "",
+      "group": "meat"
+    },
+    {
+      "name": "paprika",
+      "avatar": "",
+      "group": "grains"
+    },
+    {
+      "name": "chicken",
+      "avatar": "",
+      "group": "grains"
+    }
+  ],
+  "recipes": [{
       "id": "5",
       "name": "Tomato Basil Soup (La Madeleine copycat)",
       "ingredients": [
