@@ -197,6 +197,15 @@
       ],
       "region": "Italian",
       "img": "https://www.google.com.mx/url?sa=i&source=images&cd=&ved=2ahUKEwjmna7OpODiAhVGrJ4KHS_yAnEQjRx6BAgBEAU&url=https%3A%2F%2Fwww.thespicehouse.com%2Fback-of-the-yards-garlic-pepper-butcher-s-rub&psig=AOvVaw05JUX2cX20FZimCUUqLYSy&ust=1560303225695847"
+    },
+    {
+      "name": "test",
+      "ingredients": [
+        "Tuna"
+      ],
+      "region": [],
+      "img": "test",
+      "id": "FLdCACY"
     }
   ]
 }

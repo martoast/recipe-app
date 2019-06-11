@@ -3,7 +3,7 @@
     <h1>Create a Recipe!</h1>
     <v-form ref="form">
       <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
-      <v-text-field v-model="img" label="Image URL" required></v-text-field>
+      <v-text-field v-model="img" :rules="imgRules" label="Image URL" required></v-text-field>
 
       <v-form>
         <v-container>
@@ -55,7 +55,12 @@
       <v-container fluid grid-list-xl>
         <v-layout wrap align-center>
           <v-flex xs12 sm6 d-flex>
-            <v-select v-model="region" :items="regions" label="Region"></v-select>
+            <v-select
+              v-model="region"
+              :rules="[v => !!v || 'Region is required']"
+              :items="regions"
+              label="Region"
+            ></v-select>
           </v-flex>
         </v-layout>
       </v-container>
@@ -78,7 +83,13 @@ export default {
       img: '',
       availableIngredients: [],
       regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
-      region: []
+      region: null,
+      valid: true,
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+      ],
+      imgRules: [v => !!v || 'Img is required']
     }
   },
   computed: {
