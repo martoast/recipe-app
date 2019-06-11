@@ -1,36 +1,88 @@
 {
-  "ingredients": [{
-      "name": "water",
-      "avatar": "",
+  "ingredients": [
+    {
+      "name": "Tuna",
+      "avatar": "https://gourmetdelight.in/image/cache/catalog/pdp/tunafilet-600x600.jpg",
       "group": "meat"
     },
     {
-      "name": "rice",
-      "avatar": "",
-      "group": "grains"
-    },
-    {
-      "name": "oil",
-      "avatar": "",
+      "name": "Booty",
+      "avatar": "https://www.merriam-webster.com/assets/mw/images/article/art-wap-article-main/peach-emoji-3833-9b08d469af107cf44e10f9e9d89d0536@1x.jpg",
       "group": "meat"
     },
     {
-      "name": "salt",
-      "avatar": "",
+      "name": "Salmon",
+      "avatar": "https://harborfish.com/wp-content/uploads/2017/05/SalmonFaroe.r1@025x.jpg",
+      "group": "meat"
+    },
+    {
+      "name": "Beef Steak",
+      "avatar": "https://static.parade.com/wp-content/uploads/2017/08/raw-meat-black-eye-advice-ask-marilyn-ftr.jpg",
+      "group": "meat"
+    },
+    {
+      "name": "Pork Chop",
+      "avatar": "https://ak0.picdn.net/shutterstock/videos/23180920/thumb/1.jpg",
+      "group": "meat"
+    },
+    {
+      "name": "Chicken",
+      "avatar": "https://4.imimg.com/data4/KO/EC/MY-25368938/raw-chicken-drumsticks-500x500.jpg",
       "group": "meat"
     },
     {
       "name": "paprika",
-      "avatar": "",
+      "avatar": "https://static.thespicehouse.com/images/file/1454/large_square_Hungarian_Half-Sharp_Paprika__close.jpg",
       "group": "grains"
     },
     {
-      "name": "chicken",
-      "avatar": "",
+      "name": "Rice",
+      "avatar": "https://target.scene7.com/is/image/Target/GUEST_fed4e157-1183-47cc-b63f-80822aabdeee?wid=488&hei=488&fmt=pjpeg",
       "group": "grains"
+    },
+    {
+      "name": "Wheat",
+      "avatar": "https://5.imimg.com/data5/RS/AY/MY-24743413/anjali-500x500.jpg",
+      "group": "grains"
+    },
+    {
+      "name": "Oatmeal",
+      "avatar": "https://d14peyhpiu05bf.cloudfront.net/uploads/2016/10/Rolled-Oats-e1524700265924-770x317.jpg",
+      "group": "grains"
+    },
+    {
+      "name": "Broccoli",
+      "avatar": "https://i5.walmartimages.ca/images/Large/094/505/6000200094505.jpg",
+      "group": "vegtable"
+    },
+    {
+      "name": "Spinach",
+      "avatar": "https://organicempire.com.au/wp-content/uploads/Baby-spinach.jpeg",
+      "group": "vegtable"
+    },
+    {
+      "name": "Kale",
+      "avatar": "https://greenshop.com.ar/wp-content/uploads/sites/13/2017/11/kale-2.jpg",
+      "group": "vegtable"
+    },
+    {
+      "name": "Potato",
+      "avatar": "https://target.scene7.com/is/image/Target/GUEST_c58aff39-9071-4f1b-a270-5d00f41a0db4?wid=488&hei=488&fmt=pjpeg",
+      "group": "vegtable"
+    },
+    {
+      "name": "Salt",
+      "avatar": "https://www.joshgitalis.com/wp-content/uploads/2009/07/Salt_shaker_on_white_background-1024x768.jpg",
+      "group": "seasoning"
+    },
+    {
+      "name": "Pepper",
+      "avatar": "https://static.thespicehouse.com/images/file/987/large_square_Back_of_the_Yards_Garlic_Pepper_Butcher_s_Rub__close.jpg",
+      "group": "seasoning"
     }
   ],
-  "recipes": [{
+  "recipes": [
+    {
       "id": "5",
       "name": "Tomato Basil Soup (La Madeleine copycat)",
       "ingredients": [
@@ -134,6 +186,17 @@
       "region": "American",
       "img": "https://cdn.vox-cdn.com/thumbor/o-t7afI5TqDZlM0ABy3Rl9QpdP0=/0x0:3414x2561/1200x800/filters:focal(0x0:3414x2561)/cdn.vox-cdn.com/uploads/chorus_image/image/51127681/shutterstock_322906217.0.0.jpg",
       "id": "quUNIj4"
+    },
+    {
+      "id": "Ctt001F",
+      "name": "",
+      "ingredients": [
+        "Tuna",
+        "Rice",
+        "Kale"
+      ],
+      "region": "Italian",
+      "img": "https://www.google.com.mx/url?sa=i&source=images&cd=&ved=2ahUKEwjmna7OpODiAhVGrJ4KHS_yAnEQjRx6BAgBEAU&url=https%3A%2F%2Fwww.thespicehouse.com%2Fback-of-the-yards-garlic-pepper-butcher-s-rub&psig=AOvVaw05JUX2cX20FZimCUUqLYSy&ust=1560303225695847"
     }
   ]
 }

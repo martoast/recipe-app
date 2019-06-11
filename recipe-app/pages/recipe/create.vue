@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1>Create a Recipe!</h1>
-    <pre>{{ categorizedIngredients }}</pre>
     <v-form ref="form">
-      <v-text-field v-model="name" label="Name" required></v-text-field>
+      <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
       <v-text-field v-model="img" label="Image URL" required></v-text-field>
 
       <v-form>
@@ -91,10 +90,24 @@ export default {
       let returnItems = []
       const meats = this.availableIngredients.filter(this.isMeat)
       const grains = this.availableIngredients.filter(this.isGrains)
+      const vegtables = this.availableIngredients.filter(this.isVeg)
+      const seasonings = this.availableIngredients.filter(this.isSeasoning)
       const header1 = { header: 'Group 1' }
       const header2 = { header: 'Group 2' }
+      const header3 = { header: 'Group 3' }
+      const header4 = { header: 'Group 4' }
 
-      returnItems = _.concat(returnItems, header1, meats, header2, grains)
+      returnItems = _.concat(
+        returnItems,
+        header1,
+        meats,
+        header2,
+        grains,
+        header3,
+        vegtables,
+        header4,
+        seasonings
+      )
       return returnItems
     }
   },
@@ -142,9 +155,15 @@ export default {
     isGrains(availableIngredients) {
       return availableIngredients.group === 'grains'
     },
+    isVeg(availableIngredients) {
+      return availableIngredients.group === 'vegtable'
+    },
+    isSeasoning(availableIngredients) {
+      return availableIngredients.group === 'seasoning'
+    },
     remove(item) {
-      const index = this.friends.indexOf(item.name)
-      if (index >= 0) this.friends.splice(index, 1)
+      const index = this.ingredients.indexOf(item.name)
+      if (index >= 0) this.ingredients.splice(index, 1)
     }
   }
 }
