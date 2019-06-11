@@ -1,57 +1,56 @@
 <template>
   <div>
     <h1>Create a Recipe!</h1>
-    <v-form ref="form">
+    <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
       <v-text-field v-model="img" :rules="imgRules" label="Image URL" required></v-text-field>
 
-      <v-form>
-        <v-container>
-          <v-layout>
-            <v-flex xs12>
-              <v-autocomplete
-                v-model="ingredients"
-                :items="categorizedIngredients"
-                box
-                chips
-                color="blue-grey lighten-2"
-                label="Select"
-                item-text="name"
-                item-value="name"
-                multiple
-              >
-                <template v-slot:selection="data">
-                  <v-chip
-                    :selected="data.selected"
-                    close
-                    class="chip--select-multi"
-                    @input="remove(data.item)"
-                  >
-                    <v-avatar>
-                      <img :src="data.item.avatar">
-                    </v-avatar>
-                    {{ data.item.name }}
-                  </v-chip>
+      <v-container>
+        <v-layout>
+          <v-flex xs12>
+            <v-autocomplete
+              v-model="ingredients"
+              :items="categorizedIngredients"
+              box
+              chips
+              color="blue-grey lighten-2"
+              label="Select"
+              item-text="name"
+              item-value="name"
+              multiple
+            >
+              <template v-slot:selection="data">
+                <v-chip
+                  :selected="data.selected"
+                  close
+                  class="chip--select-multi"
+                  @input="remove(data.item)"
+                >
+                  <v-avatar>
+                    <img :src="data.item.avatar">
+                  </v-avatar>
+                  {{ data.item.name }}
+                </v-chip>
+              </template>
+              <template v-slot:item="data">
+                <template v-if="typeof data.item !== 'object'">
+                  <v-list-tile-content v-text="data.item"></v-list-tile-content>
                 </template>
-                <template v-slot:item="data">
-                  <template v-if="typeof data.item !== 'object'">
-                    <v-list-tile-content v-text="data.item"></v-list-tile-content>
-                  </template>
-                  <template v-else>
-                    <v-list-tile-avatar>
-                      <img :src="data.item.avatar">
-                    </v-list-tile-avatar>
-                    <v-list-tile-content>
-                      <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
-                      <v-list-tile-sub-title v-html="data.item.group"></v-list-tile-sub-title>
-                    </v-list-tile-content>
-                  </template>
+                <template v-else>
+                  <v-list-tile-avatar>
+                    <img :src="data.item.avatar">
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+                    <v-list-tile-sub-title v-html="data.item.group"></v-list-tile-sub-title>
+                  </v-list-tile-content>
                 </template>
-              </v-autocomplete>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-form>
+              </template>
+            </v-autocomplete>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
       <v-container fluid grid-list-xl>
         <v-layout wrap align-center>
           <v-flex xs12 sm6 d-flex>
@@ -64,9 +63,8 @@
           </v-flex>
         </v-layout>
       </v-container>
-      <nuxt-link to="/">
-        <v-btn color="success" @click="submit">Submit</v-btn>
-      </nuxt-link>
+
+      <v-btn color="success" :disabled="!valid" @click="submit">Submit</v-btn>
     </v-form>
   </div>
 </template>
@@ -78,13 +76,13 @@ const _ = require('lodash')
 export default {
   data() {
     return {
+      valid: true,
       name: '',
       ingredients: [],
       img: '',
       availableIngredients: [],
       regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
       region: null,
-      valid: true,
       nameRules: [
         v => !!v || 'Name is required',
         v => (v && v.length <= 10) || 'Name must be less than 10 characters'
@@ -143,22 +141,25 @@ export default {
       createRecipe: 'recipes/createRecipe'
     }),
     submit() {
-      const recipe = {
-        name: this.name,
-        ingredients: this.ingredients,
-        region: this.region,
-        img: this.img
+      if (this.$refs.form.validate()) {
+        const recipe = {
+          name: this.name,
+          ingredients: this.ingredients,
+          region: this.region,
+          img: this.img
+        }
+
+        // console.log('recipe :', recipe)
+        this.createRecipe(recipe)
+          .then(responce => {
+            this.$router.push('/')
+          })
+          .catch(err => {
+            alert('we got an error callling store createRecipe ')
+            // console.log('There was a probelm creating Recipe')
+            console.error(err)
+          })
       }
-      // console.log('recipe :', recipe)
-      this.createRecipe(recipe)
-        .then(responce => {
-          alert('store createRecipe succcess')
-        })
-        .catch(err => {
-          alert('we got an error callling store createRecipe ')
-          // console.log('There was a probelm creating Recipe')
-          console.error(err)
-        })
     },
     isMeat(availableIngredients) {
       return availableIngredients.group === 'meat'
