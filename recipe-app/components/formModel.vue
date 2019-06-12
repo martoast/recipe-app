@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h1>Create a Recipe!</h1>
-    <formModel :recipe="recipe"/>
-    <!-- <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field v-model="name" :counter="50" :rules="nameRules" label="Name" required></v-text-field>
       <v-text-field v-model="img" :rules="imgRules" label="Image URL" required></v-text-field>
 
       <v-container>
@@ -65,19 +63,23 @@
         </v-layout>
       </v-container>
 
-      <v-btn color="success" :disabled="!valid" @click="submit">Submit</v-btn>
-    </v-form>-->
+      <v-btn color="success" :disabled="!valid" @click="submitEdit">Edit</v-btn>
+      <v-btn color="success" :disabled="!valid" @click="submitCreate">Create</v-btn>
+      <v-btn color="success" :disabled="!valid" @click="submitErase">Create</v-btn>
+    </v-form>
   </div>
 </template>
 
 <script>
-import formModel from '@/components/formModel.vue'
 import { mapActions } from 'vuex'
 import { mapState } from 'vuex'
 const _ = require('lodash')
 export default {
-  components: {
-    formModel
+  name: 'formModel',
+  props: {
+    recipe: {
+      type: Object
+    }
   },
   data() {
     return {
@@ -90,13 +92,17 @@ export default {
       region: null,
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+        v => (v && v.length <= 50) || 'Name must be less than 10 characters'
       ],
       imgRules: [v => !!v || 'Img is required']
     }
   },
   computed: {
+    recipeId() {
+      return this.$route.params.id
+    },
     ...mapState({
+      recipeStateValue: state => state.recipes.recipe,
       ingredientsStateValue: state => state.recipes.ingredients
     }),
 
@@ -125,7 +131,7 @@ export default {
       return returnItems
     }
   },
-  async fetch({ store, error }) {
+  async fetch({ store, error, params }) {
     try {
       await store.dispatch('recipes/fetchIngredients')
     } catch (e) {
@@ -137,15 +143,64 @@ export default {
         console.error(err)
       })
     }
+    try {
+      await store.dispatch('recipes/fetchRecipe', params.id)
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch recipe at this time'
+      }).catch(err => {
+        alert('we got an error fetching ingredients. ')
+        console.error(err)
+      })
+    }
   },
   mounted() {
+    this.name = this.recipeStateValue.name
+    this.region = this.recipeStateValue.region
+    this.img = this.recipeStateValue.img
+    this.ingredients = this.recipeStateValue.ingredients
     this.availableIngredients = this.ingredientsStateValue
   },
   methods: {
     ...mapActions({
+      changeRecipe: 'recipes/changeRecipe',
+      deleteRecipe: 'recipes/deleteRecipe',
       createRecipe: 'recipes/createRecipe'
     }),
-    submit() {
+    submitErase() {
+      const recipe = {
+        id: this.recipeId
+      }
+
+      console.log('delete recipe :', recipe)
+
+      this.deleteRecipe(recipe)
+      alert('deleteRecipe succcess')
+    },
+    submitEdit() {
+      if (this.$refs.form.validate()) {
+        const recipe = {
+          id: this.recipeId,
+          name: this.name,
+          ingredients: this.ingredients,
+          region: this.region,
+          img: this.img
+        }
+        console.log('submit recipe :', recipe)
+        this.changeRecipe(recipe)
+          .then(responce => {
+            alert('changeRecipe succcess')
+            this.$router.push('/')
+          })
+          .catch(err => {
+            alert('we got an error callling store createRecipe ')
+            // console.log('There was a probelm creating Recipe')
+            console.error(err)
+          })
+      }
+    },
+    submitCreate() {
       if (this.$refs.form.validate()) {
         const recipe = {
           name: this.name,
@@ -157,6 +212,7 @@ export default {
         // console.log('recipe :', recipe)
         this.createRecipe(recipe)
           .then(responce => {
+            alert('createRecipe succcess')
             this.$router.push('/')
           })
           .catch(err => {
