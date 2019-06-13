@@ -1,18 +1,29 @@
 
 <template>
   <div class="c">
-    <h1>Showing Recipe #{{ recipeId }} </h1>
-    <img :src="recipe.img">
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-container grid-list-sm fluid>
+            <v-layout row wrap>
+              <v-img
+                :src="recipe.img"
+                :lazy-src="recipe.img"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              ></v-img>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <h1>Showing Recipe #{{ recipeId }}</h1>
     <h2>{{ recipe.name }}</h2>
     <h2>Region: {{ recipe.region }}</h2>
     <h2>Necesary Ingredients:</h2>
-    <ul>
-      <li
-        v-for="(ingredient,index) in recipe.ingredients"
-        :key="recipe.id - index"
-      >{{ ingredient }}</li>
-    </ul>
-
+    <center>
+      <tr v-for="(ingredient,index) in recipe.ingredients" :key="recipe.id - index">{{ ingredient }}</tr>
+    </center>
   </div>
 </template>
 
