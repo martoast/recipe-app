@@ -160,12 +160,12 @@ export default {
     }
   },
   mounted() {
-    this.name = this.recipeStateValue.name
-    this.region = this.recipeStateValue.region
-    this.img = this.recipeStateValue.img
-    this.ingredients = this.recipeStateValue.ingredients
+    // this.name = this.recipeStateValue.name
+    // this.region = this.recipeStateValue.region
+    // this.img = this.recipeStateValue.img
+    // this.ingredients = this.recipeStateValue.ingredients
     this.availableIngredients = this.ingredientsStateValue
-    this.instructions = this.instructions
+    // this.instructions = this.instructions
   },
   methods: {
     ...mapActions({
