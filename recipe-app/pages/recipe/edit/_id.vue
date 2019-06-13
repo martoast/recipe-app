@@ -43,12 +43,18 @@ export default {
   },
   data() {
     return {
+      valid: true,
       name: '',
       ingredients: [],
       img: '',
       availableIngredients: [],
-      availableRegions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
-      region: []
+      regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
+      region: null,
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 50) || 'Name must be less than 10 characters'
+      ],
+      imgRules: [v => !!v || 'Img is required']
     }
   },
   computed: {

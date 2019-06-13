@@ -65,7 +65,7 @@
 
       <v-btn color="success" :disabled="!valid" @click="submitEdit">Edit</v-btn>
       <v-btn color="success" :disabled="!valid" @click="submitCreate">Create</v-btn>
-      <v-btn color="success" :disabled="!valid" @click="submitErase">Create</v-btn>
+      <v-btn color="success" :disabled="!valid" @click="submitErase">Delete</v-btn>
     </v-form>
   </div>
 </template>
@@ -177,6 +177,7 @@ export default {
 
       this.deleteRecipe(recipe)
       alert('deleteRecipe succcess')
+      this.$router.push('/')
     },
     submitEdit() {
       if (this.$refs.form.validate()) {
