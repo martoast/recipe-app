@@ -3,6 +3,9 @@
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field v-model="name" :counter="50" :rules="nameRules" label="Name" required></v-text-field>
       <v-text-field v-model="img" :rules="imgRules" label="Image URL" required></v-text-field>
+      <v-flex xs6>
+        <v-textarea box name="input-7-4" label="Instructions" v-model="instructions"></v-textarea>
+      </v-flex>
 
       <v-container>
         <v-layout>
@@ -86,6 +89,7 @@ export default {
       valid: true,
       name: '',
       ingredients: [],
+      instructions: [],
       img: '',
       availableIngredients: [],
       regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
@@ -161,6 +165,7 @@ export default {
     this.img = this.recipeStateValue.img
     this.ingredients = this.recipeStateValue.ingredients
     this.availableIngredients = this.ingredientsStateValue
+    this.instructions = this.instructions
   },
   methods: {
     ...mapActions({
@@ -186,7 +191,8 @@ export default {
           name: this.name,
           ingredients: this.ingredients,
           region: this.region,
-          img: this.img
+          img: this.img,
+          instructions: this.instructions
         }
         console.log('submit recipe :', recipe)
         this.changeRecipe(recipe)
@@ -207,7 +213,8 @@ export default {
           name: this.name,
           ingredients: this.ingredients,
           region: this.region,
-          img: this.img
+          img: this.img,
+          instructions: this.instructions
         }
 
         // console.log('recipe :', recipe)
