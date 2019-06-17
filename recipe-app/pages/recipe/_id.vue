@@ -18,12 +18,19 @@
       </v-flex>
     </v-layout>
     <h1>Showing Recipe #{{ recipeId }}</h1>
-    <h2>{{ recipe.name }}</h2>
-    <h2>Region: {{ recipe.region }}</h2>
-    <h2>Necesary Ingredients:</h2>
+    <br>
+    <h1>{{ recipe.name }}</h1>
+    <br>
+    <h2>Region:</h2>
+    <h3>{{ recipe.region }}</h3>
+    <br>
+    <h2>Ingredients:</h2>
     <center>
       <tr v-for="(ingredient,index) in recipe.ingredients" :key="recipe.id - index">{{ ingredient }}</tr>
     </center>
+    <br>
+    <h2>instructions:</h2>
+    <blockquote class="blockquote">{{ recipe.instructions }}</blockquote>
   </div>
 </template>
 
