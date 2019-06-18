@@ -4,7 +4,14 @@
       <v-text-field v-model="name" :counter="50" :rules="nameRules" label="Name" required></v-text-field>
       <v-text-field v-model="img" :rules="imgRules" label="Image URL" required></v-text-field>
       <v-flex xs6>
-        <v-textarea box name="input-7-4" label="Instructions" v-model="instructions"></v-textarea>
+        <v-textarea
+          box
+          name="input-7-4"
+          label="Instructions"
+          v-model="instructions"
+          :rules="insRules"
+          required
+        ></v-textarea>
       </v-flex>
 
       <v-container>
@@ -13,6 +20,7 @@
             <v-autocomplete
               v-model="ingredients"
               :items="categorizedIngredients"
+              :rules="ingRules"
               box
               chips
               color="blue-grey lighten-2"
@@ -83,13 +91,16 @@ export default {
     recipe: {
       type: Object
     }
+    // name: {
+    //   type: String
+    // }
   },
   data() {
     return {
       valid: true,
       name: '',
-      ingredients: [],
-      instructions: [],
+      ingredients: null,
+      instructions: '',
       img: '',
       availableIngredients: [],
       regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
@@ -98,7 +109,9 @@ export default {
         v => !!v || 'Name is required',
         v => (v && v.length <= 50) || 'Name must be less than 10 characters'
       ],
-      imgRules: [v => !!v || 'Img is required']
+      imgRules: [v => !!v || 'Img is required'],
+      ingRules: [v => !!v || 'Ingredients are required'],
+      insRules: [v => !!v || 'Instructions are required']
     }
   },
   computed: {
@@ -159,14 +172,21 @@ export default {
       })
     }
   },
-  mounted() {
-    // this.name = this.recipeStateValue.name
-    // this.region = this.recipeStateValue.region
-    // this.img = this.recipeStateValue.img
-    // this.ingredients = this.recipeStateValue.ingredients
-    this.availableIngredients = this.ingredientsStateValue
-    // this.instructions = this.instructions
-  },
+  // props: {
+  //   name: {
+  //     type: String,
+  //     default: this.recipeStateValue.name,
+  //     key: 'A'
+  //   }
+  // },
+  // mounted() {
+  //   // this.name = this.recipeStateValue.name
+  //   // this.region = this.recipeStateValue.region
+  //   // this.img = this.recipeStateValue.img
+  //   // this.ingredients = this.recipeStateValue.ingredients
+  //   // this.availableIngredients = this.ingredientsStateValue
+  //   // this.instructions = this.recipeStateValue.instructions
+  // },
   methods: {
     ...mapActions({
       changeRecipe: 'recipes/changeRecipe',

@@ -217,17 +217,17 @@
       "id": "EF9dZ3C"
     },
     {
-      "name": "alex test",
+      "id": "PS9A1np",
+      "name": "changed recipe ",
       "ingredients": [
-        "Pork Chop",
-        "Chicken",
-        "Rice",
-        "Wheat"
+        "Tuna",
+        "Booty",
+        "Salmon",
+        "Beef Steak"
       ],
-      "region": "Asian",
+      "region": "Mexican",
       "img": "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/recipe-image-legacy-id-1074500_11.jpg",
-      "instructions": "this is how a retard cook soup",
-      "id": "PS9A1np"
+      "instructions": "changed instructions"
     }
   ]
 }

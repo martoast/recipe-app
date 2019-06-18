@@ -35,98 +35,99 @@
 
 <script>
 import formModel from '@/components/formModel.vue'
-import { mapActions } from 'vuex'
-import { mapState } from 'vuex'
+// import { mapActions } from 'vuex'
+// import { mapState } from 'vuex'
 export default {
   components: {
     formModel
-  },
-  data() {
-    return {
-      valid: true,
-      name: '',
-      ingredients: [],
-      img: '',
-      availableIngredients: [],
-      regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
-      region: null,
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 50) || 'Name must be less than 10 characters'
-      ],
-      imgRules: [v => !!v || 'Img is required']
-    }
-  },
-  computed: {
-    recipeId() {
-      return this.$route.params.id
-    },
-    ...mapState({
-      recipeStateValue: state => state.recipes.recipe,
-      ingredientsStateValue: state => state.recipes.ingredients
-    })
-  },
-  async fetch({ store, error, params }) {
-    try {
-      await store.dispatch('recipes/fetchIngredients')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch recipe at this time'
-      }).catch(err => {
-        alert('we got an error fetching ingredients. ')
-        console.error(err)
-      })
-    }
-    try {
-      await store.dispatch('recipes/fetchRecipe', params.id)
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch recipe at this time'
-      }).catch(err => {
-        alert('we got an error fetching ingredients. ')
-        console.error(err)
-      })
-    }
-  },
-
-  mounted() {
-    this.name = this.recipeStateValue.name
-    this.region = this.recipeStateValue.region
-    this.img = this.recipeStateValue.img
-    this.ingredients = this.recipeStateValue.ingredients
-    this.availableIngredients = this.ingredientsStateValue
-  },
-  methods: {
-    ...mapActions({
-      changeRecipe: 'recipes/changeRecipe',
-      deleteRecipe: 'recipes/deleteRecipe'
-    }),
-    erase() {
-      const recipe = {
-        id: this.recipeId
-      }
-
-      console.log('delete recipe :', recipe)
-
-      this.deleteRecipe(recipe)
-      alert('deleteRecipe succcess')
-    },
-    submit() {
-      const recipe = {
-        id: this.recipeId,
-        name: this.name,
-        ingredients: this.ingredients,
-        region: this.region,
-        img: this.img
-      }
-      console.log('submit recipe :', recipe)
-      this.changeRecipe(recipe).then(responce => {
-        alert('changeRecipe succcess')
-      })
-    }
   }
+  // data() {
+  //   return {
+  //     valid: true,
+  //     name: '',
+  //     ingredients: [],
+  //     img: '',
+  //     availableIngredients: [],
+  //     regions: ['American', 'Italian', 'Mexican', 'Asian', 'French'],
+  //     region: null,
+  //     nameRules: [
+  //       v => !!v || 'Name is required',
+  //       v => (v && v.length <= 50) || 'Name must be less than 10 characters'
+  //     ],
+  //     imgRules: [v => !!v || 'Img is required']
+  //   }
+  // },
+  // computed: {
+  //   recipeId() {
+  //     return this.$route.params.id
+  //   },
+  //   ...mapState({
+  //     recipeStateValue: state => state.recipes.recipe,
+  //     ingredientsStateValue: state => state.recipes.ingredients
+  //   })
+  // },
+  // async fetch({ store, error, params }) {
+  //   try {
+  //     await store.dispatch('recipes/fetchIngredients')
+  //   } catch (e) {
+  //     error({
+  //       statusCode: 503,
+  //       message: 'Unable to fetch recipe at this time'
+  //     }).catch(err => {
+  //       alert('we got an error fetching ingredients. ')
+  //       console.error(err)
+  //     })
+  //   }
+  //   try {
+  //     await store.dispatch('recipes/fetchRecipe', params.id)
+  //   } catch (e) {
+  //     error({
+  //       statusCode: 503,
+  //       message: 'Unable to fetch recipe at this time'
+  //     }).catch(err => {
+  //       alert('we got an error fetching ingredients. ')
+  //       console.error(err)
+  //     })
+  //   }
+  // },
+
+  // mounted() {
+  //   this.name = name
+  //   this.name = this.recipeStateValue.name
+  //   this.region = this.recipeStateValue.region
+  //   this.img = this.recipeStateValue.img
+  //   this.ingredients = this.recipeStateValue.ingredients
+  //   this.availableIngredients = this.ingredientsStateValue
+  // },
+  // methods: {
+  //   ...mapActions({
+  //     changeRecipe: 'recipes/changeRecipe',
+  //     deleteRecipe: 'recipes/deleteRecipe'
+  //   }),
+  //   erase() {
+  //     const recipe = {
+  //       id: this.recipeId
+  //     }
+
+  //     console.log('delete recipe :', recipe)
+
+  //     this.deleteRecipe(recipe)
+  //     alert('deleteRecipe succcess')
+  //   },
+  //   submit() {
+  //     const recipe = {
+  //       id: this.recipeId,
+  //       name: this.name,
+  //       ingredients: this.ingredients,
+  //       region: this.region,
+  //       img: this.img
+  //     }
+  //     console.log('submit recipe :', recipe)
+  //     this.changeRecipe(recipe).then(responce => {
+  //       alert('changeRecipe succcess')
+  //     })
+  //   }
+  // }
 }
 </script>
 
